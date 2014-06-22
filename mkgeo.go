@@ -17,7 +17,7 @@ func main() {
 	var data bytes.Buffer
 
 	data.WriteString("db = db.getSiblingDB('geo')\nd = db.data\nd.drop()\n\n")
-	data.WriteString("u = db.users\nu.drop()\n\nu.insert({'username':'drb', 'password':'passw', 'email':'dag.robole@gmail.com'})\n")
+	data.WriteString("u = db.users\nu.drop()\n\nu.insert({'username':'jens', 'password':'jensen', 'email':'jens.jensen@gmail.com'})\n")
 	data.WriteString("u.insert({'username':'ola', 'password':'olsen', 'email':'ola.olsen@gmail.com'})\n\n")
 
 	for i := 0; i < 3000; i++ {
