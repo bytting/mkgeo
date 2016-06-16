@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -24,10 +25,11 @@ func main() {
 		act := rand.Float32() * 100
 		unc := rand.Float32() * 0.3
 		refdate := time.Date(2000+rand.Intn(14), time.Month(1+rand.Intn(12)), 1+rand.Intn(31), rand.Intn(24), 0, 0, 0, time.UTC)
+		log.Println(refdate.Unix() * 1000)
 		stype := stypes[rand.Intn(6)]
 		lat := 55.0 + rand.Float32()*25.0
 		lon := -3.0 + rand.Float32()*43.0
-		str := fmt.Sprintf("d.insert({ activity: %f, uncertainty: %f, sigma: 2, refdate: new Date('%s'), sample_type: '%s', location: { coordinates: [%f, %f] }})\n", act, unc, refdate.String(), stype, lon, lat)
+		str := fmt.Sprintf("d.insert({ activity: %f, uncertainty: %f, sigma: 2, refdate: new Date(%d), sample_type: '%s', location: { coordinates: [%f, %f] }})\n", act, unc, refdate.Unix()*1000, stype, lon, lat)
 		data.WriteString(str)
 	}
 
